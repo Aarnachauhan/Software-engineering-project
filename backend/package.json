@@ -5,8 +5,12 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
+   "dev": "nodemon server.js",
     "start": "node server.js",
-    "server": "nodemon server.js"
+  
+  "server": "cd backend && node server.js",
+  "client": "cd frontend && npm start",
+  "ml": "cd ml_api && python app.py"
   },
   "author": "",
   "license": "ISC",
@@ -22,5 +26,9 @@
     "nodemon": "^3.1.10",
     "stripe": "^19.2.0",
     "validator": "^13.15.20"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
   }
+  
 }

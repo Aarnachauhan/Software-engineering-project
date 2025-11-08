@@ -17,26 +17,40 @@ const Complaint = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    try {
-      const response = await axios.post(
-        "http://localhost:4000/api/complaints",
-        formData
-      );
+  try {
+    // Step 1️⃣ — Send description to Flask ML API for prediction
+    const mlResponse = await fetch("http://localhost:5000/predict", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ text: formData.description }),
+    });
 
-      if (response.data.success) {
-        alert("Complaint submitted successfully!");
-        setFormData({ roomNo: "", hostelName: "", description: "" });
-        navigate("/thankyou"); // 👈 Redirects to Thank You page
-      } else {
-        alert("Failed to submit complaint. Please try again.");
-      }
-    } catch (error) {
-      console.error("Error submitting complaint:", error);
-      alert("An error occurred while submitting your complaint.");
+    const mlData = await mlResponse.json();
+    const predictedCategory = mlData.prediction;
+    console.log("Predicted category:", predictedCategory);
+
+    // Step 2️⃣ — Send complaint + predicted category to Node backend
+    const response = await axios.post("http://localhost:4000/api/complaints", {
+      ...formData,
+      category: predictedCategory, // 👈 include ML category
+    });
+
+    // Step 3️⃣ — Handle success/failure
+    if (response.data.success) {
+      alert(`Complaint submitted successfully! Category: ${predictedCategory}`);
+      setFormData({ roomNo: "", hostelName: "", description: "" });
+      navigate("/thankyou");
+    } else {
+      alert("Failed to submit complaint. Please try again.");
     }
-  };
+  } catch (error) {
+    console.error("Error submitting complaint:", error);
+    alert("An error occurred while submitting your complaint.");
+  }
+};
+
 
   return (
     <div className="complaint-container">

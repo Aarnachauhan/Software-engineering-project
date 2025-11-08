@@ -1,0 +1,26 @@
+{
+  "name": "software-engineering-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+  "server": "cd backend && node server.js",
+  "client": "cd frontend && npm start",
+  "ml": "cd ml_api && python app.py",
+  "dev": "concurrently \"npm run server\" \"npm run client\" \"npm run ml\""
+},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Aarnachauhan/Software-engineering-project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Aarnachauhan/Software-engineering-project/issues"
+  },
+  "homepage": "https://github.com/Aarnachauhan/Software-engineering-project#readme",
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}

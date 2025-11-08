@@ -6,6 +6,7 @@ import connectCloudinary from './config/cloudinary.js'
 import userRouter from './routes/userRoute.js'
 import complaintRouter from './routes/complaintRoute.js'   // ✅ NEW
 //import complaintRouter from './routes/complaintRoute.js';
+import mlRoutes from './routes/mlRoutes.js';
 
 
 const app=express()
@@ -19,6 +20,7 @@ app.use(cors())
 app.use('/api/user' , userRouter)
 app.use('/api/complaints', complaintRouter)  // ✅ NEW
 
+app.use('/api/ml', mlRoutes);
 
 
 

@@ -1,10 +1,10 @@
 import express from "express";
-import { createComplaint ,getAllComplaints } from "../controllers/ComplaintController.js";
+import { createComplaint, getAllComplaints, getComplaintsByCategory } from "../controllers/ComplaintController.js";
 
 const router = express.Router();
 
 router.post("/", createComplaint);
-router.get("/", getAllComplaints); // ✅ NEW
-
+router.get("/", getAllComplaints);
+router.get("/category", getComplaintsByCategory); // fetch category-wise
 
 export default router;
