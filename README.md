@@ -73,10 +73,14 @@ python --version
 📌 Open a new terminal / command prompt
 
 1️⃣ Navigate to backend folder
+```
 cd backend
+```
 
 2️⃣ Install dependencies
+```
 npm install
+```
 
 
 ⚠️ If you get an error related to axios:
