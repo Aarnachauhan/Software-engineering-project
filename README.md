@@ -4,7 +4,8 @@ A full-stack web application that enables hostel students to raise complaints an
 
 # 📁 Project Structure
 Software-engineering-project/
-│
+
+
 ├── admin/ → Admin Panel (React + Vite)
 
 ├── backend/      → Backend (Node.js + Express)
